@@ -13,6 +13,14 @@ from social_insecurity import sqlite
 from social_insecurity.forms import CommentsForm, FriendsForm, IndexForm, PostForm, ProfileForm
 
 
+"""
+imports Jens
+"""
+from flask import Flask
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+# Jens slutt
+
 @app.route("/", methods=["GET", "POST"])
 @app.route("/index", methods=["GET", "POST"])
 def index():
@@ -185,8 +193,15 @@ def friends(username: str):
     friends = sqlite.query(get_friends)
     return render_template("friends.html.j2", title="Friends", username=username, friends=friends, form=friends_form)
 
+# Limiter skal begrense antall mulige forespørseler en klient kan utføre
+limiter = Limiter(
+    key_func=get_remote_address,
+    app=app,
+    default_limits=["100 per minute"],
+)
 
 @app.route("/profile/<string:username>", methods=["GET", "POST"])
+@limiter.limit("5 per minute")
 def profile(username: str):
     """Provides the profile page for the application.
 
@@ -220,3 +235,4 @@ def profile(username: str):
 def uploads(filename):
     """Provides an endpoint for serving uploaded files."""
     return send_from_directory(Path(app.instance_path) / app.config["UPLOADS_FOLDER_PATH"], filename)
+

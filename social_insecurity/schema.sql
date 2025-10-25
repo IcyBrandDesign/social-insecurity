@@ -4,15 +4,15 @@
 
 CREATE TABLE [Users] (
   id INTEGER PRIMARY KEY,
-  username VARCHAR,
-  first_name VARCHAR,
-  last_name VARCHAR,
-  [password] VARCHAR,
-  education VARCHAR DEFAULT 'Unknown',
-  employment VARCHAR DEFAULT 'Unknown',
-  music VARCHAR DEFAULT 'Unknown',
-  movie VARCHAR DEFAULT 'Unknown',
-  nationality VARCHAR DEFAULT 'Unknown',
+  username VARCHAR(100),
+  first_name VARCHAR(100),
+  last_name VARCHAR(100),
+  [password] VARCHAR(100),
+  education VARCHAR(100) DEFAULT 'Unknown',
+  employment VARCHAR(100) DEFAULT 'Unknown',
+  music VARCHAR(100) DEFAULT 'Unknown',
+  movie VARCHAR(100) DEFAULT 'Unknown',
+  nationality VARCHAR(100) DEFAULT 'Unknown',
   birthday DATE DEFAULT 'Unknown'
 );
 
