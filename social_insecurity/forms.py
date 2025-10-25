@@ -29,6 +29,7 @@ from wtforms import (
     SubmitField,
     TextAreaField,
 )
+from wtforms.validators import Length
 
 # Defines all forms in the application, these will be instantiated by the template,
 # and the routes.py will read the values of the fields
@@ -92,10 +93,10 @@ class FriendsForm(FlaskForm):
 class ProfileForm(FlaskForm):
     """Provides the profile form for the application."""
 
-    education = StringField(label="Education", render_kw={"placeholder": "Highest education"})
-    employment = StringField(label="Employment", render_kw={"placeholder": "Current employment"})
-    music = StringField(label="Favorite song", render_kw={"placeholder": "Favorite song"})
-    movie = StringField(label="Favorite movie", render_kw={"placeholder": "Favorite movie"})
-    nationality = StringField(label="Nationality", render_kw={"placeholder": "Your nationality"})
+    education = StringField(label="Education", validators=[Length(max=30)], render_kw={"placeholder": "Highest education"})
+    employment = StringField(label="Employment", validators=[Length(max=30)], render_kw={"placeholder": "Current employment"})
+    music = StringField(label="Favorite song", validators=[Length(max=30)], render_kw={"placeholder": "Favorite song"})
+    movie = StringField(label="Favorite movie", validators=[Length(max=30)], render_kw={"placeholder": "Favorite movie"})
+    nationality = StringField(label="Nationality", validators=[Length(max=30)], render_kw={"placeholder": "Your nationality"})
     birthday = DateField(label="Birthday", default=datetime.now())
     submit = SubmitField(label="Update Profile")
